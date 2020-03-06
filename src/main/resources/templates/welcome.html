@@ -1,0 +1,10 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:insert="fragments/navbar.html"></header>
+
+<div th:each="msq: ${messages}">
+    <p th:text="${msq}"></p>
+</div>
+
+</body>
+</html>
