@@ -18,8 +18,15 @@ import web.service.UserServiceImpl;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
+
     private UserServiceImpl userDetails;
+
+    @Autowired
+    public WebSecurityConfig(UserServiceImpl userDetails) {
+        this.userDetails = userDetails;
+    }
+
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

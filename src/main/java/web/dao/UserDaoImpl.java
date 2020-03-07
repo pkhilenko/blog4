@@ -3,7 +3,7 @@ package web.dao;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import web.domain.User;
+import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -57,8 +57,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByUsername(String username) {
 
-        final TypedQuery<User> query = entityManager.createQuery(
-                "select u from User u where u.username = :username", User.class);
+        final TypedQuery<User> query = entityManager.createQuery("select u from User u where u.username = :username", User.class);
         query.setParameter("username", username);
         final List<User> users = query.getResultList();
         if (users.isEmpty()) {

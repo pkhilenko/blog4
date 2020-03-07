@@ -1,1 +1,1 @@
-alert("hello");
+console.log("проверка подключения");
