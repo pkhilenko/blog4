@@ -6,24 +6,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import web.domain.User;
-import web.repos.UserRepo;
+import web.service.UserService;
 
 @Controller
 @RequestMapping("/admin")
 @PreAuthorize("hasAuthority('ADMIN')")
 public class AdminUserController {
 
-    private UserRepo userRepo;
+    private UserService userService;
 
     @Autowired
-    public AdminUserController(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public AdminUserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/user")
-    public ModelAndView listCars(ModelAndView modelAndView) {
+    public ModelAndView listUsers(ModelAndView modelAndView) {
         modelAndView.setViewName("admin-list-users");
-        modelAndView.addObject("users", userRepo.findAll());
+        modelAndView.addObject("users", userService.getUsers());
         return modelAndView;
     }
 
@@ -37,20 +37,28 @@ public class AdminUserController {
 
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute("user") User user) {
-        userRepo.save(user);
+        userService.saveUser(user);
         return "redirect:/admin/user";
     }
 
     @GetMapping("/updateForm/{userId}")
     public ModelAndView showFormForUpdate(@PathVariable("userId") long id, ModelAndView modelAndView) {
         modelAndView.setViewName("admin-user-form");
-        modelAndView.addObject("user", userRepo.findById(id));
+        modelAndView.addObject("user", userService.getUser(id));
         return modelAndView;
     }
 
     @GetMapping("/delete/{userId}")
-    public String deleteCar(@PathVariable("userId") long id) {
-        userRepo.deleteById(id);
+    public String deleteUser(@PathVariable("userId") long id) {
+        userService.deleteUser(id);
         return "redirect:/admin/user";
+    }
+
+    @GetMapping("/user/{name}")
+    public ModelAndView userEditForm(@PathVariable String name, ModelAndView modelAndView) {
+        User user = userService.findByUsername(name);
+        modelAndView.setViewName("admin-user-details");
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 }
