@@ -1,0 +1,30 @@
+.main {
+    background-color: #eee;
+}
+
+button.btn.disabled {
+    cursor: inherit;
+    background-color: white;
+    opacity: 1;
+}
+
+button.btn.inactive {
+    color: #007bff;
+}
+
+.content {
+    background-color: white;
+    width: 100%;
+    padding: 15px;
+
+}
+
+.main-row {
+    margin-top: 20px;
+    width: 90%;
+}
+
+.title-content {
+    border: 1px solid #ddd;
+    background-color: #e7e7e7;
+}

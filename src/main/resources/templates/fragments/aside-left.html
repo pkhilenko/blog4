@@ -1,0 +1,25 @@
+<th:block xmlns:th="http://www.thymeleaf.org" th:fragment="admin">
+    <ul class="nav nav-pills nav-fill flex-column mt-4">
+        <li class="nav-item">
+            <a th:href="@{/admin/user}" class="nav-link active" href="#">Admin</a>
+        </li>
+        <li class="nav-item">
+            <a th:href="@{/user}" class="nav-link" href="#">User</a>
+        </li>
+    </ul>
+</th:block>
+
+<th:block xmlns:th="http://www.thymeleaf.org" th:fragment="user">
+
+    <ul class="nav nav-pills nav-fill flex-column mt-4">
+        <th:block th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+            <li class="nav-item" >
+                <a th:href="@{/admin/user}" class="nav-link" href="#">Admin</a>
+            </li>
+        </th:block>
+
+        <li class="nav-item">
+            <a th:href="@{/user}" class="nav-link active" href="#">User</a>
+        </li>
+    </ul>
+</th:block>
