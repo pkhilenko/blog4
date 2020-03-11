@@ -61,4 +61,10 @@ public class AdminUserController {
         modelAndView.addObject("user", user);
         return modelAndView;
     }
+
+    @GetMapping("/findOne")
+    @ResponseBody
+    public User findOne(Long id) {
+        return userService.getUser(id);
+    }
 }
