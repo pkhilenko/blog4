@@ -28,8 +28,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveUser(User user) {
-        Session session = entityManager.unwrap(Session.class);
-        session.saveOrUpdate(user);
+//        Session session = entityManager.unwrap(Session.class);
+//        session.saveOrUpdate(user);
+        if (user.getId() == null) {
+            entityManager.persist(user);
+        } else {
+            entityManager.merge(user);
+        }
     }
 
     @Override
