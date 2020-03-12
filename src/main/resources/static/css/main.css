@@ -15,7 +15,7 @@ button.btn.inactive {
 .content {
     background-color: white;
     width: 100%;
-    padding: 15px;
+    padding: 16px;
 
 }
 
@@ -27,4 +27,8 @@ button.btn.inactive {
 .title-content {
     border: 1px solid #ddd;
     background-color: #e7e7e7;
+}
+
+.h1-adminpanel {
+    width: 90%;
 }
