@@ -11,7 +11,7 @@
 
                 <!--  form editUser              ///////-->
 
-                <form action="/admin/saveUser" method="POST">
+                <form id="modalEditForm" action="/api/v1/admin/saveUser" method="POST">
 
                     <div class="form-group d-flex flex-column align-items-center">
                         <label for="username">Name</label>
@@ -34,8 +34,8 @@
                     </div>
 
                     <div class="form-group d-flex flex-column align-items-center">
-                        <label for="roles">Role</label>
-                        <select id="roles" name="roles" multiple style="width: 100%">
+                        <label for="rolez">Role</label>
+                        <select id="rolez" name="roles" multiple style="width: 100%">
                             <option value="USER">USER</option>
                             <option value="ADMIN">ADMIN</option>
                         </select>
@@ -44,7 +44,7 @@
                     <input type="hidden" name="id" id="id">
 
                     <div class="modal-footer">
-                        <input type="button" value="Close" class="btn btn-secondary" data-dismiss="modal"/>
+                        <input id="modal-edit-close" type="button" value="Close" class="btn btn-secondary" data-dismiss="modal"/>
                         <input type="submit" value="Save changes" class="btn btn-primary">
                     </div>
                 </form>

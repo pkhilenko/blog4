@@ -23,24 +23,22 @@ public class AdminUserRestController {
         this.userService = userService;
     }
 
-    @ResponseBody
     @GetMapping("/user")
-    public List<User> listUsers() {
-        return  userService.getUsers();
-    }
-
-    ResponseBody
-    @PostMapping("/saveUser")
-    public User saveUser(@ModelAttribute("user") User user) {
-        userService.saveUser(user);
-        return user;
+    public ModelAndView listUsers(ModelAndView modelAndView) {
+        modelAndView.setViewName("fragments/all-user-fragment");
+        modelAndView.addObject("users", userService.getUsers());
+        return modelAndView;
     }
 
     @ResponseBody
+    @PostMapping("/saveUser")
+    public void saveUser(@ModelAttribute("user") User user) {
+        userService.saveUser(user);
+    }
+
     @GetMapping("/delete/{userId}")
-    public String deleteUser(@PathVariable("userId") long id) {
+    public void deleteUser(@PathVariable("userId") long id) {
         userService.deleteUser(id);
-        return HttpStatus.OK.toString();
     }
 
     @ResponseBody
@@ -51,7 +49,6 @@ public class AdminUserRestController {
     }
 
     @ResponseBody
-
     @GetMapping("/findOne")
     public User findOne(Long id) {
         return userService.getUser(id);
