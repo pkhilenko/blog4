@@ -9,10 +9,15 @@ $(function () {
             url: href,
             data: $this.serialize(),
             success: function (response) {
-                $('#users-table').load('/api/v1/admin/user');
+                $.get('/api/v1/admin/user', function (users) {
+                    console.log(users);
+                    $('#user-item').html('');
+                    users.forEach(u => showAll(u));
+                });
                 $('#modal-edit-close').click();
             }
-        })
+        });
+        return false;
     })
 
     //new user
