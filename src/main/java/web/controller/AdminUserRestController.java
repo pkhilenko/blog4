@@ -24,10 +24,8 @@ public class AdminUserRestController {
     }
 
     @GetMapping("/user")
-    public ModelAndView listUsers(ModelAndView modelAndView) {
-        modelAndView.setViewName("fragments/all-user-fragment");
-        modelAndView.addObject("users", userService.getUsers());
-        return modelAndView;
+    public List<User> listUsers() {
+        return userService.getUsers();
     }
 
     @ResponseBody
