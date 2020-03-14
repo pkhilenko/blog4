@@ -1,11 +1,8 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.UserService;
 
@@ -23,15 +20,16 @@ public class AdminUserRestController {
         this.userService = userService;
     }
 
+    @ResponseBody
     @GetMapping("/user")
     public List<User> listUsers() {
         return userService.getUsers();
     }
 
-    @ResponseBody
     @PostMapping("/saveUser")
-    public void saveUser(@ModelAttribute("user") User user) {
+    public User saveUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
+        return user;
     }
 
     @GetMapping("/delete/{userId}")

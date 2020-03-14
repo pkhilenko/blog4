@@ -2,8 +2,8 @@
     <div title-content>All Users</div>
     <div class="content">
         <div class="row">
-            <div class="col-md-offset-1 col-md-10 mt-4">
-                <div class="panel panel-info content-form align-self-center">
+            <div class="col-md-offset-1 col-md-10 mt-4" style="min-width: 100%;">
+                <div class="panel panel-info content-form mx-auto">
                     <div class="panel-heading">
                         <div class="panel-title">
                         </div>
@@ -11,8 +11,10 @@
                     <div class="panel-body">
                         <table class="table table-striped">
                             <tr>
+                                <th>ID</th>
                                 <th>name</th>
                                 <th>email</th>
+                                <th>password</th>
                                 <th>country</th>
                                 <th>role</th>
                                 <th>Action</th>
@@ -21,8 +23,10 @@
                             <tbody id="user-item">
                             <th:block th:each="user: ${users}">
                                 <tr >
+                                    <td th:text="${user.id}"></td>
                                     <td th:text="${user.username}"></td>
                                     <td th:text="${user.email}"></td>
+                                    <td th:text="${user.password}"></td>
                                     <td th:text="${user.country}"></td>
                                     <td>
                                         <th:block th:each="role: ${user.roles}">
@@ -39,7 +43,6 @@
                                 </tr>
                             </th:block>
                             </tbody>
-
 
                         </table>
                     </div>
