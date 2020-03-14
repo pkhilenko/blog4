@@ -20,7 +20,6 @@ public class AdminUserRestController {
         this.userService = userService;
     }
 
-    @ResponseBody
     @GetMapping("/user")
     public List<User> listUsers() {
         return userService.getUsers();
@@ -37,14 +36,12 @@ public class AdminUserRestController {
         userService.deleteUser(id);
     }
 
-    @ResponseBody
     @GetMapping("/user/{name}")
     public User userEditForm(@PathVariable String name) {
         User user = userService.findByUsername(name);
         return user;
     }
 
-    @ResponseBody
     @GetMapping("/findOne")
     public User findOne(Long id) {
         return userService.getUser(id);

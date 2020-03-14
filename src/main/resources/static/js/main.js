@@ -33,6 +33,7 @@ $(function () {
         })
     });
 
+    //edit
     $('.table').on('click', '.eBtn', function (event) {
         event.preventDefault();
         let n = $(this).parent().parent();
@@ -44,18 +45,16 @@ $(function () {
         $('#modalEdit').modal('show');
     });
 
+    //delete
     $('#user-item').on('click', '.dBtn', function (event) {
         event.preventDefault();
+        let n = $(this).parent().parent();
         const href = $(this).attr('href');
         $.ajax({
             type: 'get',
             url: href,
             success: function () {
-                $.get('/api/v1/admin/user', function (users) {
-                    $('#user-item').html('');
-                    users.forEach(u => appendNewUser(u));
-                });
-
+               n.html('');
             }
         });
     });
