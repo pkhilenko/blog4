@@ -1,16 +1,5 @@
 $(function () {
-    const oneTr = '<td>' + u.id + '</td> ' +
-        '<td>' + u.username + '</td> ' +
-        '<td>' + u.email + '</td> ' +
-        '<td>' + u.password + '</td> ' +
-        '<td>' + u.country + '</td> ' +
-        '<td>' + u.roles +
-        '</td> ' + '<td class="d-flex justify-content-around"> ' +
-        '<a class="btn btn-primary eBtn" href="/api/v1/admin/findOne/' + u.id + '">Edit</a> ' +
-        '<a class="btn btn-danger dBtn" onclick="if (!(confirm(\'Are you sure you want to delete this user?\'))) return false"' +
-        ' href="/api/v1/admin/delete/' + u.id + '">Delete</a></td> '
-
-    //update user
+        //update user
     $('#modalEditForm').on('submit', function (event) {
         event.preventDefault();
         $this = $(this);
@@ -21,7 +10,7 @@ $(function () {
             data: $this.serialize(),
             success: function (u) {
                 $updatingNode = $('td:contains(' + u.id + ')').parent();
-                $updatingNode.html(oneTr);
+                $updatingNode.html(oneTr(u));
                 $('#modal-edit-close').click();
             }
         });
@@ -72,6 +61,19 @@ $(function () {
     });
 
     function appendNewUser(u) {
-        $('#user-item').append('<tr >' +oneTr + '</tr>');
+        $('#user-item').append('<tr >' + oneTr(u) + '</tr>');
+    }
+
+    function oneTr(u) {
+        return '<td>' + u.id + '</td> ' +
+            '<td>' + u.username + '</td> ' +
+            '<td>' + u.email + '</td> ' +
+            '<td>' + u.password + '</td> ' +
+            '<td>' + u.country + '</td> ' +
+            '<td>' + u.roles +
+            '</td> ' + '<td class="d-flex justify-content-around"> ' +
+            '<a class="btn btn-primary eBtn" href="/api/v1/admin/findOne/' + u.id + '">Edit</a> ' +
+            '<a class="btn btn-danger dBtn" onclick="if (!(confirm(\'Are you sure you want to delete this user?\'))) return false"' +
+            ' href="/api/v1/admin/delete/' + u.id + '">Delete</a></td> '
     }
 });
